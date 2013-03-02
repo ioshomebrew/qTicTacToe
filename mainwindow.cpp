@@ -616,7 +616,6 @@ void MainWindow::computerMedium(int spot)
     {
         case 0:
         {
-            bool went = false;
             // check to see if player is about to win
             if(board[1] == 'x')
             {
@@ -1508,7 +1507,7 @@ void MainWindow::on_button1_clicked()
     else
     {
         // make the computer go
-        computerMedium(0);
+        // computerMedium(0);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1537,7 +1536,7 @@ void MainWindow::on_button2_clicked()
     else
     {
         // make the computer go
-        computerMedium(1);
+        // computerMedium(1);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1566,7 +1565,7 @@ void MainWindow::on_button3_clicked()
     else
     {
         // make the computer go
-        computerMedium(2);
+        // computerMedium(2);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1595,7 +1594,7 @@ void MainWindow::on_button4_clicked()
     else
     {
         // make the computer go
-        computerMedium(3);
+        // computerMedium(3);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1624,7 +1623,7 @@ void MainWindow::on_button5_clicked()
     else
     {
         // make the computer go
-        computerMedium(4);
+        // computerMedium(4);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1653,7 +1652,7 @@ void MainWindow::on_button6_clicked()
     else
     {
         // make the computer go
-        computerMedium(5);
+        // computerMedium(5);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1682,7 +1681,7 @@ void MainWindow::on_button7_clicked()
     else
     {
         // make the computer go
-        computerMedium(6);
+        // computerMedium(6);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1711,7 +1710,7 @@ void MainWindow::on_button8_clicked()
     else
     {
         // make the computer go
-        computerMedium(7);
+        // computerMedium(7);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1740,7 +1739,7 @@ void MainWindow::on_button9_clicked()
     else
     {
         // make the computer go
-        computerMedium(8);
+       //  computerMedium(8);
 
         // check for a winner
         if(checkIfWon() != 'b')
@@ -1772,21 +1771,25 @@ char MainWindow::checkIfWon()
     // check for 3 in a row verticly (row 1)
     int x = 0;
     int o = 0;
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i <= 2; i++)
     {
         if(board[i] == 'x')
         {
-            x++;
+            x += 1;
+            qDebug() << "x = ";
             if(x == 3)
             {
                 qDebug() << "X won (first check)";
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
-            x = 0;
+            break;
         }
+    }
+    for(int i = 0; i <= 2; i++)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -1796,9 +1799,10 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            qDebug() << "break";
+            break;
         }
     }
 
@@ -1807,7 +1811,7 @@ char MainWindow::checkIfWon()
     o = 0;
 
     // check for 3 in a row verticly (row 2)
-    for(int i = 3; i < 6; i++)
+    for(int i = 3; i <= 6; i++)
     {
         if(board[i] == 'x')
         {
@@ -1818,10 +1822,13 @@ char MainWindow::checkIfWon()
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
             x = 0;
         }
+    }
+    for(int i = 3; i <= 6; i++)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -1831,14 +1838,18 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            break;
         }
     }
 
+    // reset variables
+    x = 0;
+    o = 0;
+
     // check for row verticly (row 3)
-    for(int i = 6; i < 9; i++)
+    for(int i = 6; i <= 8; i++)
     {
         if(board[i] == 'x')
         {
@@ -1849,10 +1860,13 @@ char MainWindow::checkIfWon()
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
             x = 0;
         }
+    }
+    for(int i = 6; i <= 8; i++)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -1862,14 +1876,18 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            break;
         }
     }
 
+    // reset variables
+    x = 0;
+    o = 0;
+
     // check for 3 in a row horizontally (row 1)
-    for(int i = 0; i < 6; i += 3)
+    for(int i = 0; i <= 6; i += 3)
     {
         if(board[i] == 'x')
         {
@@ -1880,10 +1898,13 @@ char MainWindow::checkIfWon()
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
-            x = 0;
+            break;
         }
+    }
+    for(int i = 0; i <= 6; i += 3)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -1893,9 +1914,9 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            break;
         }
     }
 
@@ -1904,7 +1925,7 @@ char MainWindow::checkIfWon()
     o = 0;
 
     // check for 3 in a row horizontally (row 2)
-    for(int i = 1; i < 8; i += 3)
+    for(int i = 1; i <= 8; i += 3)
     {
         if(board[i] == 'x')
         {
@@ -1915,10 +1936,13 @@ char MainWindow::checkIfWon()
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
-            x = 0;
+            break;
         }
+    }
+    for(int i = 1; i <= 8; i += 3)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -1928,9 +1952,9 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            break;
         }
     }
 
@@ -1939,7 +1963,7 @@ char MainWindow::checkIfWon()
     o = 0;
 
     // check for 3 in a row horizontally (row 3)
-    for(int i = 2; i < 9; i += 3)
+    for(int i = 2; i <= 8; i += 3)
     {
         if(board[i] == 'x')
         {
@@ -1950,10 +1974,13 @@ char MainWindow::checkIfWon()
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
-            x = 0;
+            break;
         }
+    }
+    for(int i = 2; i <= 8; i += 3)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -1963,9 +1990,9 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            break;
         }
     }
 
@@ -1974,7 +2001,7 @@ char MainWindow::checkIfWon()
     o = 0;
 
     // check diagonally
-    for(int i = 0; i < 9; i += 4)
+    for(int i = 0; i <= 8; i += 4)
     {
         if(board[i] == 'x')
         {
@@ -1985,10 +2012,13 @@ char MainWindow::checkIfWon()
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
-            x = 0;
+            break;
         }
+    }
+    for(int i = 0; i <= 8; i += 4)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -1998,9 +2028,9 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            break;
         }
     }
 
@@ -2009,7 +2039,7 @@ char MainWindow::checkIfWon()
     o = 0;
 
     // check diagonal the other way
-    for(int i = 2; i < 8; i += 2)
+    for(int i = 2; i <= 8; i += 2)
     {
         if(board[i] == 'x')
         {
@@ -2020,10 +2050,13 @@ char MainWindow::checkIfWon()
                 return 'x';
             }
         }
-        else if(board[i] != 'x')
+        if(board[i] != 'x')
         {
-            x = 0;
+            break;
         }
+    }
+    for(int i = 2; i <= 8; i += 2)
+    {
         if(board[i] == 'o')
         {
             o++;
@@ -2033,9 +2066,9 @@ char MainWindow::checkIfWon()
                 return 'o';
             }
         }
-        else if(board[i] != 'o')
+        if(board[i] != 'o')
         {
-            o = 0;
+            break;
         }
     }
 
